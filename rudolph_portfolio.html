@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rudolph Anthony Chabra – Digital Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --c1:#FF4D1C;
+  --c2:#1A1A2E;
+  --c3:#F5F0E8;
+  --c4:#FFB347;
+  --serif:'Bebas Neue',sans-serif;
+  --body:'DM Sans',sans-serif;
+}
+body{background:var(--c2);color:var(--c3);font-family:var(--body);overflow-x:hidden}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem;background:var(--c2);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-circle{position:absolute;border-radius:50%;opacity:0.07;background:var(--c1)}
+.circle1{width:600px;height:600px;top:-150px;right:-150px}
+.circle2{width:300px;height:300px;bottom:200px;left:-80px;opacity:0.05}
+.hero-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c1);font-weight:500;margin-bottom:1.5rem;z-index:1;position:relative}
+.hero-name{font-family:var(--serif);font-size:clamp(4rem,12vw,9rem);line-height:0.9;z-index:1;position:relative;letter-spacing:2px}
+.hero-name span{color:var(--c1)}
+.hero-tagline{font-size:1rem;color:rgba(245,240,232,0.55);font-weight:300;margin-top:1.5rem;z-index:1;position:relative;max-width:480px;line-height:1.7}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;margin-top:2rem;padding:14px 28px;background:var(--c1);color:#fff;font-family:var(--body);font-weight:500;font-size:14px;text-decoration:none;border:none;cursor:pointer;letter-spacing:1px;z-index:1;position:relative}
+.hero-cta:hover{background:#e03e10}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;z-index:1;position:relative;flex-wrap:wrap}
+.stat-item{border-left:2px solid var(--c1);padding-left:1rem}
+.stat-num{font-family:var(--serif);font-size:2.8rem;color:var(--c3);letter-spacing:1px}
+.stat-label{font-size:11px;letter-spacing:2px;color:rgba(245,240,232,0.5);text-transform:uppercase;margin-top:2px}
+.section{padding:5rem 3rem}
+.section-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--c1);font-weight:500;margin-bottom:0.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(2.5rem,6vw,4.5rem);line-height:1;margin-bottom:3rem;letter-spacing:1px}
+.section-title span{color:var(--c1)}
+.charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+.chart-card{background:rgba(255,255,255,0.04);border:0.5px solid rgba(245,240,232,0.12);padding:1.5rem;border-radius:4px}
+.chart-card-title{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.5);margin-bottom:1rem}
+.chart-card-big{grid-column:1/-1}
+.metric-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:3rem}
+.metric{background:rgba(255,77,28,0.08);border:0.5px solid rgba(255,77,28,0.25);padding:1.25rem 1.5rem;border-radius:4px}
+.metric-n{font-family:var(--serif);font-size:2.4rem;color:var(--c1);letter-spacing:1px}
+.metric-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,240,232,0.5);margin-top:4px}
+.work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.work-card{background:rgba(255,255,255,0.04);border:0.5px solid rgba(245,240,232,0.1);padding:2rem;border-radius:4px;position:relative;overflow:hidden}
+.work-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--c1)}
+.work-card-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--c1);margin-bottom:0.75rem}
+.work-card-title{font-family:var(--serif);font-size:1.8rem;color:var(--c3);margin-bottom:0.75rem;letter-spacing:1px}
+.work-card-desc{font-size:14px;color:rgba(245,240,232,0.6);line-height:1.7}
+.work-card-results{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:8px}
+.result-pill{font-size:11px;padding:4px 12px;background:rgba(255,179,71,0.1);border:0.5px solid rgba(255,179,71,0.3);color:var(--c4);letter-spacing:0.5px;border-radius:2px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.skill-item{padding:1.25rem 1.5rem;background:rgba(255,255,255,0.03);border:0.5px solid rgba(245,240,232,0.08);border-radius:4px}
+.skill-name{font-size:14px;font-weight:500;color:var(--c3);margin-bottom:8px}
+.skill-bar-bg{height:3px;background:rgba(245,240,232,0.1);border-radius:2px;overflow:hidden}
+.skill-bar-fill{height:100%;background:var(--c1);border-radius:2px;animation:grow 1.2s ease forwards;transform-origin:left}
+@keyframes grow{from{width:0%}to{width:var(--w)}}
+.contact-section{background:var(--c1);padding:5rem 3rem;text-align:center}
+.contact-section .section-title{color:#fff;margin-bottom:1rem}
+.contact-section .section-title span{color:var(--c2)}
+.contact-desc{color:rgba(255,255,255,0.8);max-width:500px;margin:0 auto 2.5rem;line-height:1.7}
+.contact-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.contact-link{padding:12px 28px;background:transparent;border:1.5px solid rgba(255,255,255,0.6);color:#fff;font-family:var(--body);font-size:13px;letter-spacing:1px;text-decoration:none;font-weight:500;cursor:pointer;transition:all 0.2s}
+.contact-link:hover,.contact-link.primary{background:#fff;color:var(--c1);border-color:#fff}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(26,26,46,0.9);backdrop-filter:blur(12px);border-bottom:0.5px solid rgba(245,240,232,0.08)}
+.nav-logo{font-family:var(--serif);font-size:1.4rem;letter-spacing:2px;color:var(--c3)}
+.nav-logo span{color:var(--c1)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.55);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--c1)}
+.divider{height:0.5px;background:rgba(245,240,232,0.08);margin:0 3rem}
+.experience-timeline{max-width:700px}
+.exp-item{display:grid;grid-template-columns:160px 1fr;gap:2rem;margin-bottom:3rem}
+.exp-date{font-size:12px;letter-spacing:1px;color:rgba(245,240,232,0.4);padding-top:4px;font-weight:300}
+.exp-role{font-family:var(--serif);font-size:1.6rem;letter-spacing:1px;color:var(--c3);margin-bottom:4px}
+.exp-company{font-size:13px;color:var(--c1);letter-spacing:1px;text-transform:uppercase;margin-bottom:0.75rem}
+.exp-bullets{list-style:none;padding:0}
+.exp-bullets li{font-size:14px;color:rgba(245,240,232,0.6);line-height:1.7;padding-left:16px;position:relative;margin-bottom:6px}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--c1);font-size:12px;top:2px}
+.scroll-cue{position:absolute;bottom:2.5rem;right:3rem;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,240,232,0.3);display:flex;align-items:center;gap:8px;z-index:1}
+.scroll-line{width:40px;height:0.5px;background:rgba(245,240,232,0.3)}
+@media(max-width:600px){
+  .hero,.section{padding:2rem 1.5rem}
+  .exp-item{grid-template-columns:1fr;gap:0.5rem}
+  .nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">R<span>.</span>A<span>.</span>C</div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#results">Results</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-circle circle1"></div>
+    <div class="hero-circle circle2"></div>
+  </div>
+  <div class="hero-label">Digital Marketing Freelancer · Chennai, India</div>
+  <div class="hero-name">RUDOLPH<br>ANTHONY<br><span>CHABRA</span></div>
+  <div class="hero-tagline">I build brands that sell. QSR marketing, paid social & brand activation — driven by data, built for growth.</div>
+  <div>
+    <button class="hero-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Work Together ↗</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">4.2X</div><div class="stat-label">Average ROAS</div></div>
+    <div class="stat-item"><div class="stat-num">45%</div><div class="stat-label">Audience Growth YoY</div></div>
+    <div class="stat-item"><div class="stat-num">90M+</div><div class="stat-label">Annual Impressions</div></div>
+    <div class="stat-item"><div class="stat-num">2+</div><div class="stat-label">Years QSR Experience</div></div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-line"></div>scroll</div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="results">
+  <div class="section-label">By the numbers</div>
+  <div class="section-title">Real <span>Results,</span><br>Real Impact</div>
+  <div class="metric-row">
+    <div class="metric"><div class="metric-n">₹30L</div><div class="metric-l">Annual Ad Budget Managed</div></div>
+    <div class="metric"><div class="metric-n">4.2:1</div><div class="metric-l">ROAS on Meta Ads</div></div>
+    <div class="metric"><div class="metric-n">125K</div><div class="metric-l">Avg Views Per Reel</div></div>
+    <div class="metric"><div class="metric-n">92%</div><div class="metric-l">Complaint Resolution Rate</div></div>
+    <div class="metric"><div class="metric-n">22%</div><div class="metric-l">In-Store Foot Traffic Lift</div></div>
+    <div class="metric"><div class="metric-n">4.6/5</div><div class="metric-l">Brand Sentiment Score</div></div>
+  </div>
+  <div class="charts-grid">
+    <div class="chart-card chart-card-big">
+      <div class="chart-card-title">Monthly Impressions Growth (Burger Man, 2024)</div>
+      <div style="display:flex;gap:16px;margin-bottom:12px;font-size:12px;color:rgba(245,240,232,0.5)">
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:3px;background:#FF4D1C;display:inline-block"></span>Paid Reach</span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:3px;background:#FFB347;display:inline-block"></span>Organic Reach</span>
+      </div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="impressionsChart" role="img" aria-label="Line chart showing monthly paid and organic reach growth">Monthly impressions growing from 600K to 1.44M over 12 months.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Ad Spend vs Revenue Generated (₹ Lakhs)</div>
+      <div style="display:flex;gap:16px;margin-bottom:12px;font-size:12px;color:rgba(245,240,232,0.5)">
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#FF4D1C;border-radius:2px;display:inline-block"></span>Spend</span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#FFB347;border-radius:2px;display:inline-block"></span>Revenue</span>
+      </div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="roasChart" role="img" aria-label="Bar chart comparing ad spend vs revenue by quarter">Quarterly ROAS consistently above 4x.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Content Type Performance (Avg Views)</div>
+      <div style="display:flex;gap:16px;margin-bottom:12px;font-size:12px;color:rgba(245,240,232,0.5)">
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#FF4D1C;border-radius:50%;display:inline-block"></span>Reels</span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#FFB347;border-radius:50%;display:inline-block"></span>Stories</span>
+        <span style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:#5DCAA5;border-radius:50%;display:inline-block"></span>Static</span>
+      </div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="contentChart" role="img" aria-label="Doughnut chart of content type performance">Reels 65%, Stories 25%, Static 10%.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Engagement Rate Growth (% YoY)</div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="engagementChart" role="img" aria-label="Bar chart showing engagement rate growing 28% year over year">Engagement rate grew from 4.2% to 5.4%.</canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="work">
+  <div class="section-label">Selected Projects</div>
+  <div class="section-title">Work That <span>Moved</span><br>the Needle</div>
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-card-tag">QSR · Social · Paid Ads · BTL</div>
+      <div class="work-card-title">Burger Man Brand Growth</div>
+      <div class="work-card-desc">Full-cycle social media strategy, paid campaigns and on-ground brand activation for a 3-location QSR brand. Managed ₹2.5L monthly ad spend and led all content production — 60+ video assets per month.</div>
+      <div class="work-card-results">
+        <span class="result-pill">+45% Audience YoY</span>
+        <span class="result-pill">4.2:1 ROAS</span>
+        <span class="result-pill">+22% Foot Traffic</span>
+        <span class="result-pill">1.44M Monthly Impressions</span>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-card-tag">D2C · E-commerce · Meta Ads</div>
+      <div class="work-card-title">Solethreads D2C Campaign</div>
+      <div class="work-card-desc">End-to-end digital marketing for a direct-to-consumer footwear brand. Managed Meta paid campaigns, organic social strategy, and brand positioning to drive online sales at scale.</div>
+      <div class="work-card-results">
+        <span class="result-pill">Social Strategy</span>
+        <span class="result-pill">Meta Campaigns</span>
+        <span class="result-pill">Brand Positioning</span>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="work-card-tag">Brand Launch · Content · Conversion</div>
+      <div class="work-card-title">Sal Bakes — Brand from Scratch</div>
+      <div class="work-card-desc">Built a complete digital marketing strategy for a home baking brand from zero. Developed brand identity, content pillars, and paid funnels — achieving strong early engagement and conversion results.</div>
+      <div class="work-card-results">
+        <span class="result-pill">60% Engagement Rate</span>
+        <span class="result-pill">+25% Conversion</span>
+        <span class="result-pill">Brand Launch</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="experience">
+  <div class="section-label">Experience</div>
+  <div class="section-title">Where I've<br><span>Done the Work</span></div>
+  <div class="experience-timeline">
+    <div class="exp-item">
+      <div class="exp-date">Mar 2024 – Present</div>
+      <div class="exp-content">
+        <div class="exp-role">Social Media Manager & Brand Activation Specialist</div>
+        <div class="exp-company">Burger Man · Chennai · 3 Locations</div>
+        <ul class="exp-bullets">
+          <li>Grew social audience 45% YoY through full-funnel content strategy</li>
+          <li>Managed ₹2.5L/month Meta Ads budget, delivering 4.2:1 ROAS</li>
+          <li>Produced 60+ short-form videos monthly averaging 125K views each</li>
+          <li>Resolved 92% of 500+ monthly customer complaints within 24 hours</li>
+          <li>Drove 22% in-store foot traffic increase via BTL & LAM campaigns</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">2023 · 3 Months</div>
+      <div class="exp-content">
+        <div class="exp-role">HR Administration Executive (Intern)</div>
+        <div class="exp-company">Vidiem – Maya Appliances</div>
+        <ul class="exp-bullets">
+          <li>Supported onboarding documentation and HR record management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:3rem">
+    <div class="section-label" style="margin-bottom:1.5rem">Core Skills</div>
+    <div class="skills-grid">
+      <div class="skill-item"><div class="skill-name">Meta Ads Manager</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:95%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Content Creation</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:92%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Brand Strategy</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:88%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Google Analytics 4</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:85%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">BTL / Activation</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:90%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Influencer Marketing</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:82%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Copywriting</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:88%"></div></div></div>
+      <div class="skill-item"><div class="skill-name">Google Ads</div><div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:78%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="section-title">Ready to <span>Grow</span><br>Your Brand?</div>
+  <div class="contact-desc">I'm available for freelance projects — social media management, paid campaigns, brand launches, and activations. Let's talk about what you need.</div>
+  <div class="contact-links">
+    <a class="contact-link primary" href="mailto:rudolphanthony79@gmail.com">rudolphanthony79@gmail.com</a>
+    <a class="contact-link" href="tel:+918072541419">+91 80725 41419</a>
+  </div>
+  <div style="margin-top:2rem;font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:1px">Chennai, Tamil Nadu · Available for Remote & On-ground Projects</div>
+</section>
+
+<script>
+const grid='#333344',tick='rgba(245,240,232,0.4)';
+new Chart(document.getElementById('impressionsChart'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{label:'Paid Reach',data:[400,480,520,610,680,750,820,900,990,1100,1220,1380],borderColor:'#FF4D1C',backgroundColor:'rgba(255,77,28,0.08)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#FF4D1C',borderWidth:2},{label:'Organic Reach',data:[200,230,270,310,350,390,420,480,530,600,650,700],borderColor:'#FFB347',backgroundColor:'transparent',fill:false,tension:0.4,pointRadius:3,pointBackgroundColor:'#FFB347',borderDash:[6,4],borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:grid},ticks:{color:tick,font:{size:11}}},y:{grid:{color:grid},ticks:{color:tick,font:{size:11},callback:v=>v+'K'}}}}});
+new Chart(document.getElementById('roasChart'),{type:'bar',data:{labels:['Q1','Q2','Q3','Q4'],datasets:[{label:'Ad Spend (₹L)',data:[7.5,7.5,7.5,7.5],backgroundColor:'rgba(255,77,28,0.7)',borderRadius:3},{label:'Revenue Generated (₹L)',data:[31.5,32.3,30.8,33.4],backgroundColor:'rgba(255,179,71,0.7)',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:grid},ticks:{color:tick,font:{size:11}}},y:{grid:{color:grid},ticks:{color:tick,font:{size:11},callback:v=>'₹'+v+'L'}}}}});
+new Chart(document.getElementById('contentChart'),{type:'doughnut',data:{labels:['Reels (125K avg)','Stories (45K avg)','Static (18K avg)'],datasets:[{data:[65,25,10],backgroundColor:['#FF4D1C','#FFB347','#5DCAA5'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'70%',plugins:{legend:{display:false}}}});
+new Chart(document.getElementById('engagementChart'),{type:'bar',data:{labels:['Jan–Mar','Apr–Jun','Jul–Sep','Oct–Dec'],datasets:[{label:'Engagement Rate %',data:[4.2,4.6,5.0,5.4],backgroundColor:['rgba(255,77,28,0.5)','rgba(255,77,28,0.65)','rgba(255,77,28,0.8)','#FF4D1C'],borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:grid},ticks:{color:tick,font:{size:11}}},y:{grid:{color:grid},ticks:{color:tick,font:{size:11},callback:v=>v+'%'},min:0,max:7}}}});
+</script>
+</body>
+</html>
